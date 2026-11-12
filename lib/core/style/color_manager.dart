@@ -27,4 +27,5 @@ class ColorManager {
   // اللهجة المختارة
   static const Color selectedGreen = Color(0XFF58B85C);
   static const Color selectedGreenBorder = Color(0XFF2E7D32);
+  
 }

@@ -1,8 +1,8 @@
 import 'package:education_children/feature/auth/widgets/auth_scaffold.dart';
 import 'package:education_children/feature/auth/widgets/labeled_text_field.dart';
 import 'package:education_children/feature/auth/widgets/parents_section.dart';
+import 'package:education_children/feature/home/man_teacher.dart';
 import 'package:flutter/material.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,8 +26,12 @@ class _LoginViewState extends State<LoginScreen> {
   }
 
   void _onStart() {
-    if (!_formKey.currentState!.validate()) return;
-    // TODO: Navigation / Cubit
+    if (!_formKey.currentState!.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ManTeacher()),
+      );
+    }
   }
 
   @override

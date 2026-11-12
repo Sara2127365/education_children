@@ -6,6 +6,8 @@ import 'package:education_children/feature/auth/signup/widget/language_selector.
 import 'package:education_children/feature/auth/widgets/auth_scaffold.dart';
 import 'package:education_children/feature/auth/widgets/labeled_text_field.dart';
 import 'package:education_children/feature/auth/widgets/parents_section.dart';
+import 'package:education_children/feature/home/man_teacher.dart';
+import 'package:education_children/feature/home/woman_teacher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -39,15 +41,37 @@ class _SignupViewState extends State<SignupScreen> {
   }
 
   void _onSubmit() {
-    if (!_formKey.currentState!.validate()) return;
-    if (_gender == null || _guide == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('من فضلك اختر النوع والموجه')),
-      );
-      return;
-    }
-    // TODO: Cubit / API
+  if (!_formKey.currentState!.validate()) return;
+
+  if (_gender == null || _guide == null) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('من فضلك اختر النوع والموجه'),
+      ),
+    );
+    return;
   }
+
+  switch (_guide!) {
+    case GuideType.female:
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const WomanTeacher(),
+        ),
+      );
+      break;
+
+    case GuideType.male:
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ManTeacher(),
+        ),
+      );
+      break;
+  }
+}
 
   @override
   Widget build(BuildContext context) {
