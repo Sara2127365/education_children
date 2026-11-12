@@ -13,6 +13,7 @@ class AppAssets {
   static const String girl = '$_base/girl.png';
   static const String boy = '$_base/boy.png';
   static const String backgroudTeacher = '$_base/background_teacher.png';
+  static const String backgroundHome = '$_base/home_background.png';
 
   // الموجه
   static const String teacherFemale = '$_base/teacher_female.png';

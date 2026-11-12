@@ -11,6 +11,7 @@ class WomanTeacher extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AuthBackground(
+        imagePath: AppAssets.backgroudTeacher,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),

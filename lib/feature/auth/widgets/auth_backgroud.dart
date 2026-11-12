@@ -1,17 +1,25 @@
-import 'package:education_children/core/style/app_assets.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 
 class AuthBackground extends StatelessWidget {
   final Widget child;
-  const AuthBackground({super.key, required this.child});
+  final String imagePath;
+
+  const AuthBackground({
+    super.key,
+    required this.child,
+    required this.imagePath,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset(AppAssets.beachBackground, fit: BoxFit.cover),
+        Image.asset(
+          imagePath,
+          fit: BoxFit.cover,
+        ),
         child,
       ],
     );

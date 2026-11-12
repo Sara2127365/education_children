@@ -1,3 +1,4 @@
+import 'package:education_children/core/style/app_assets.dart';
 import 'package:education_children/core/style/color_manager.dart';
 import 'package:education_children/core/widget/button.dart';
 import 'package:education_children/feature/auth/widgets/auth_backgroud.dart';
@@ -33,6 +34,7 @@ class AuthScaffold extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         body: AuthBackground(
+          imagePath: AppAssets.beachBackground,
           child: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 20),
