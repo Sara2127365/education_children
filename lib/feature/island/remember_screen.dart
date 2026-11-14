@@ -1,10 +1,11 @@
-import 'package:education_children/feature/letters/model/letter_model.dart';
-import 'package:education_children/feature/letters/speaking_practice_screen.dart';
+import 'package:education_children/feature/island/lesson_flow.dart';
+import 'package:education_children/feature/island/model/letter_model.dart';
+import 'package:education_children/feature/island/speaking_practice_screen.dart';
 import 'package:flutter/material.dart';
-import 'lesson_widgets.dart';
+import 'widget/lesson_widgets.dart';
 
 class RememberScreen extends StatelessWidget {
-  final LetterModel letter;
+  final LetterPositionModel letter;
   const RememberScreen({super.key, required this.letter});
 
   @override
@@ -12,12 +13,7 @@ class RememberScreen extends StatelessWidget {
     return LessonScaffold(
       title: 'تذكر',
       buttonText: 'حسنا',
-      onButtonPressed: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => SpeakingPracticeScreen(letter: letter),
-        ),
-      ),
+      onButtonPressed: () => startPracticeFlow(context, letter),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
         child: Stack(

@@ -1,6 +1,6 @@
-import 'package:education_children/feature/letters/learn_letter_screen.dart';
-import 'package:education_children/feature/letters/lesson_widgets.dart';
-import 'package:education_children/feature/letters/model/letter_model.dart';
+import 'package:education_children/feature/island/learn_letter_screen.dart';
+import 'package:education_children/feature/island/widget/lesson_widgets.dart';
+import 'package:education_children/feature/island/model/letter_model.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,10 +13,12 @@ class LettersIslandScreen extends StatefulWidget {
 
 class _LettersIslandScreenState extends State<LettersIslandScreen> {
   final Set<int> _completed = {0}; // أ done (later: load from Cubit / storage)
-  int _selected = 1;               // ب is the current letter
+  int _selected = 1;
+
+  get arabicLetters => null;               // ب is the current letter
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context ){
     return LessonScaffold(
       title: 'جزيرة الحروف',
       showBack: false,

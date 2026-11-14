@@ -1,11 +1,11 @@
 import 'package:education_children/core/style/app_assets.dart';
-import 'package:education_children/feature/letters/model/letter_model.dart';
+import 'package:education_children/feature/island/model/letter_model.dart';
 import 'package:flutter/material.dart';
-import 'lesson_widgets.dart';
+import 'widget/lesson_widgets.dart';
 
 
 class ListeningPracticeScreen extends StatefulWidget {
-  final LetterModel letter;
+  final LetterPositionModel letter;
   const ListeningPracticeScreen({super.key, required this.letter});
 
   @override
@@ -16,6 +16,8 @@ class ListeningPracticeScreen extends StatefulWidget {
 class _ListeningPracticeScreenState extends State<ListeningPracticeScreen> {
   late final List<String> _options;
   String? _picked;
+
+  get arabicLetters => null;
 
   @override
   void initState() {

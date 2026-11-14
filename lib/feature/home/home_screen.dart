@@ -1,10 +1,10 @@
 import 'package:education_children/core/style/app_assets.dart';
 import 'package:education_children/feature/auth/widgets/auth_backgroud.dart';
-import 'package:education_children/feature/home/model/island_model.dart';
+import 'package:education_children/feature/island/model/island_model.dart';
 import 'package:education_children/feature/home/widget/dashed_path_painter.dart';
 import 'package:education_children/feature/home/widget/home_header.dart';
 import 'package:education_children/feature/home/widget/island_widget.dart';
-import 'package:education_children/feature/letters/letters_island_screen.dart';
+import 'package:education_children/feature/island/letters_island_screen.dart';
 import 'package:flutter/material.dart';
 
 

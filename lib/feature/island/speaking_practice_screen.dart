@@ -1,11 +1,11 @@
-import 'package:education_children/feature/letters/model/letter_model.dart';
+import 'package:education_children/feature/island/model/letter_model.dart';
 import 'package:flutter/material.dart';
 import 'listening_practice_screen.dart';
-import 'lesson_widgets.dart';
+import 'widget/lesson_widgets.dart';
 
 
 class SpeakingPracticeScreen extends StatefulWidget {
-  final LetterModel letter;
+  final LetterPositionModel letter;
   const SpeakingPracticeScreen({super.key, required this.letter});
 
   @override

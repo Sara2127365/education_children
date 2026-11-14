@@ -1,4 +1,4 @@
-import 'package:education_children/feature/home/model/island_model.dart';
+import 'package:education_children/feature/island/model/island_model.dart';
 import 'package:flutter/material.dart';
 
 class DashedPathPainter extends CustomPainter {

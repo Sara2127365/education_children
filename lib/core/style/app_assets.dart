@@ -26,7 +26,18 @@ class AppAssets {
   static const treasureIsland = '$_base/treasure.png';
   static const boat = '$_base/boat.png';
   static const teacherThinking = '$_base/teacher_thinking.png';
-static const duck = '$_base/duck.png';
+  static const duck = '$_base/duck.png';
+  static const kidOne = '$_base/kid_one.png';
+  static const kidTwo = '$_base/kid_Two.png';
+  static const kidThree = '$_base/kid_Three.png';
+  static const boatKid = '$_base/boat_kid.png';
+  static const successBg = '$_base/success_page.png';
+  static const visa = '$_base/visa.png';
+  static const masterCard = '$_base/master_card.png';
+  static const subscriptionBg = '$_base/subscriptionBg';
+  static const paymentBg='$_base/payment_page.png';
+  static const mascotThinking = 'assets/images/mascot_thinking.png';
+  static const mascotSuccess = 'assets/images/mascot_success.png';
 
   // الموجه
   static const String teacherFemale = '$_base/teacher_female.png';
