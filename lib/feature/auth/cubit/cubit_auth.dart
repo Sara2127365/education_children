@@ -52,7 +52,12 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (isSuccess) {
         if (childName != null && childName.trim().isNotEmpty) {
-          UserProfile.update(newName: childName.trim());
+          UserProfile.update(
+            newName: childName.trim(),
+            newToken: responseModel.token,
+          );
+        } else if (responseModel.token != null) {
+          UserProfile.update(newToken: responseModel.token);
         }
         emit(SuccessSignInState(
           message: responseModel.message ?? 'تم تسجيل الدخول بنجاح',
@@ -91,7 +96,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(LoadingSignUpState());
     try {
       final jsonResponse = await ApiService.post(
-        url: '${ApiConstants.baseUrl}${ApiConstants.register}',
+        url: '${ApiConstants.baseUrl}${ApiConstants.childOnboarding}',
         body: request.toJson(),
       );
 
@@ -112,6 +117,7 @@ class AuthCubit extends Cubit<AuthState> {
               : GuideType.male,
           newAge: request.age,
           newLanguage: request.language,
+          newToken: responseModel.token,
         );
 
         emit(SuccessSignUpState(

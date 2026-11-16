@@ -3,6 +3,7 @@ import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/core/state/learning_state.dart';
 import 'package:education_children/core/state/user_profile_state.dart';
 import 'package:education_children/feature/home/home_screen.dart';
+import 'package:education_children/feature/island/cubit/letters_cubit.dart';
 import 'package:education_children/feature/island/model/letter_model.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,22 @@ class LetterSuccessScreen extends StatelessWidget {
   const LetterSuccessScreen({super.key, required this.letterIndex});
 
   void _onAwesomePressed(BuildContext context) {
-    // 1. تسجيل اكتمال الحرف الحالي
+    // 1. إضافة المكافأة (العملات والنجوم) لرصيد الطفل في التطبيق
+    UserProfile.coins.value += 20;
+    UserProfile.stars.value += 3;
+
+    // 2. إرسال إتمام الحرف إلى السيرفر عبر الـ API
+    LettersCubit.submitStep(
+      characterId: letterIndex + 1,
+      stepNumber: 6,
+      isCorrect: true,
+      score: 20,
+    );
+
+    // 3. تسجيل اكتمال الحرف الحالي محلياً
     LearningProgress.completeLetter(letterIndex);
 
-    // 2. التحقق مما إذا كان هذا الحرف هو الأخير (حرف ي / index 27) أو اكتملت جميع الحروف
+    // 4. التحقق مما إذا كان هذا الحرف هو الأخير (حرف ي / index 27) أو اكتملت جميع الحروف
     final bool isLastLetter = (letterIndex >= arabicLetters.length - 1);
     final bool allDone = isLastLetter ||
         (LearningProgress.completedLetters.value.length >= arabicLetters.length);

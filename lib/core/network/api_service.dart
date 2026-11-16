@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:education_children/core/localization/app_locale.dart';
+import 'package:education_children/core/state/user_profile_state.dart';
 
 class ApiService {
   static final HttpClient _client = HttpClient()
@@ -9,6 +11,7 @@ class ApiService {
   static Future<Map<String, dynamic>> post({
     required String url,
     required Map<String, dynamic> body,
+    String? token,
     Map<String, String>? headers,
   }) async {
     try {
@@ -18,6 +21,13 @@ class ApiService {
       // الرؤوس الأساسية
       request.headers.set(HttpHeaders.contentTypeHeader, 'application/json; charset=UTF-8');
       request.headers.set(HttpHeaders.acceptHeader, 'application/json');
+      request.headers.set('Accept-Language', AppLocale.languageCode);
+
+      // التوكن التلقائي
+      final activeToken = token ?? UserProfile.token.value;
+      if (activeToken != null && activeToken.isNotEmpty) {
+        request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $activeToken');
+      }
 
       if (headers != null) {
         headers.forEach((key, value) {
@@ -63,6 +73,7 @@ class ApiService {
   /// إرسال طلب GET
   static Future<Map<String, dynamic>> get({
     required String url,
+    String? token,
     Map<String, String>? headers,
   }) async {
     try {
@@ -70,6 +81,12 @@ class ApiService {
       final request = await _client.getUrl(uri);
 
       request.headers.set(HttpHeaders.acceptHeader, 'application/json');
+      request.headers.set('Accept-Language', AppLocale.languageCode);
+
+      final activeToken = token ?? UserProfile.token.value;
+      if (activeToken != null && activeToken.isNotEmpty) {
+        request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $activeToken');
+      }
 
       if (headers != null) {
         headers.forEach((key, value) {
