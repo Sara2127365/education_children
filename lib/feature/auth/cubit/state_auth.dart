@@ -1,15 +1,20 @@
-
+import 'package:education_children/feature/auth/login/model/login_response.dart';
+import 'package:education_children/feature/auth/signup/model/sign_up_response_model.dart';
 
 abstract class AuthState {}
 
 class InitialState extends AuthState {}
 
+// ========================
+// Sign Up States
+// ========================
 class LoadingSignUpState extends AuthState {}
 
 class SuccessSignUpState extends AuthState {
   final String message;
+  final SignupResponseModel? response;
 
-  SuccessSignUpState({required this.message});
+  SuccessSignUpState({required this.message, this.response});
 }
 
 class ErrorSignUpState extends AuthState {
@@ -18,36 +23,20 @@ class ErrorSignUpState extends AuthState {
   ErrorSignUpState({required this.message});
 }
 
+// ========================
+// Sign In / Login States
+// ========================
 class LoadingSignInState extends AuthState {}
 
 class SuccessSignInState extends AuthState {
-   final String message;
+  final String message;
+  final LoginResponseModel? response;
 
-  SuccessSignInState({required this.message});
-
+  SuccessSignInState({required this.message, this.response});
 }
 
 class ErrorSignInState extends AuthState {
-   final String message;
+  final String message;
 
   ErrorSignInState({required this.message});
-
 }
-
-
-class LoadingForgetPasswordState extends AuthState {}
-
-class SuccessForgetPasswordState extends AuthState {
-   final String message;
-
-  SuccessForgetPasswordState({required this.message});
-
-}
-
-class ErrorForgetPasswordState extends AuthState {
-   final String message;
-
-  ErrorForgetPasswordState({required this.message});
-
-}
-
