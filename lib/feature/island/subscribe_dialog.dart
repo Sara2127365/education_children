@@ -1,6 +1,6 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/feature/island/widget/subscription_widgets.dart';
 import 'package:flutter/material.dart';
-
 
 /// Returns true if the user pressed "اشترك الآن".
 Future<bool?> showSubscribersOnlyDialog(BuildContext context) {
@@ -8,7 +8,7 @@ Future<bool?> showSubscribersOnlyDialog(BuildContext context) {
     context: context,
     barrierColor: Colors.black38,
     builder: (ctx) => Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: AppLocale.textDirection,
       child: Dialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -22,21 +22,22 @@ Future<bool?> showSubscribersOnlyDialog(BuildContext context) {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                'هذه الجزيرة متاحة\nللمشتركين فقط',
+              Text(
+                'subscribers_only_title'.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30,
+                style: const TextStyle(
+                  fontSize: 28,
                   height: 1.3,
                   fontWeight: FontWeight.bold,
                   color: SubColors.navy,
                 ),
               ),
               const SizedBox(height: 18),
-              const Text(
-                'اشترك الآن لفتح جميع الجزر',
-                style: TextStyle(
-                  fontSize: 20,
+              Text(
+                'unlock_all_islands'.tr(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 19,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF0B0B9B),
                 ),
@@ -55,10 +56,10 @@ Future<bool?> showSubscribersOnlyDialog(BuildContext context) {
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
-                  child: const Text(
-                    'اشترك الآن',
-                    style:
-                        TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  child: Text(
+                    'subscribe_now'.tr(),
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -75,10 +76,10 @@ Future<bool?> showSubscribersOnlyDialog(BuildContext context) {
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
-                  child: const Text(
-                    'رجوع للخريطة',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  child: Text(
+                    'back_to_map'.tr(),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

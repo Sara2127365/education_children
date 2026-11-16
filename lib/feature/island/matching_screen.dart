@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/feature/island/widget/lesson_widget.dart';
 import 'package:education_children/feature/island/widget/lesson_widgets.dart' hide LessonScaffold, LessonColors;
 import 'package:flutter/material.dart';
@@ -114,7 +115,7 @@ class _MatchingScreenState extends State<MatchingScreen> {
                 child: CustomPaint(painter: _LinesPainter(_buildLines())),
               ),
               Directionality(
-                textDirection: TextDirection.rtl,
+                textDirection: AppLocale.textDirection,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -1,3 +1,4 @@
+import 'package:education_children/feature/island/model/letter_model.dart';
 import 'package:education_children/feature/island/widget/lesson_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -25,42 +26,20 @@ class LetterPositionExample {
 
 /// شاشة "مواضع الحرف" - 3 صفحات (أول / وسط / آخر)
 class LetterPositionsScreen extends StatefulWidget {
+  final LetterPositionModel? letter;
   final VoidCallback onFinished;
-  const LetterPositionsScreen({super.key, required this.onFinished});
+  const LetterPositionsScreen({
+    super.key,
+    this.letter,
+    required this.onFinished,
+  });
 
   @override
   State<LetterPositionsScreen> createState() => _LetterPositionsScreenState();
 }
 
 class _LetterPositionsScreenState extends State<LetterPositionsScreen> {
-  static const _items = [
-    LetterPositionExample(
-      positionLabel: 'أول الكلمة',
-      letterForm: 'بـ',
-      highlighted: 'بَ',
-      afterText: 'قرة',
-      imageAsset: 'assets/images/cow.png',
-      word: 'بَقَرَة',
-    ),
-    LetterPositionExample(
-      positionLabel: 'وسط الكلمة',
-      letterForm: 'ـبـ',
-      beforeText: 'حَ',
-      highlighted: 'بْ',
-      afterText: 'ل',
-      imageAsset: 'assets/images/rope.png',
-      word: 'حَبْل',
-    ),
-    LetterPositionExample(
-      positionLabel: 'آخر الكلمة',
-      letterForm: 'ـب',
-      beforeText: 'مرك',
-      highlighted: 'ب',
-      imageAsset: 'assets/images/boat.png',
-      word: 'مَرْكَب',
-    ),
-  ];
-
+  late final List<LetterPositionExample> _items;
   final _controller = PageController();
   final _tts = FlutterTts();
   int _index = 0;
@@ -68,8 +47,125 @@ class _LetterPositionsScreenState extends State<LetterPositionsScreen> {
   @override
   void initState() {
     super.initState();
+    _items = _buildItemsForLetter(widget.letter?.letter ?? 'ب');
     _tts.setLanguage('ar-SA');
     _tts.setSpeechRate(0.4);
+  }
+
+  static List<LetterPositionExample> _buildItemsForLetter(String l) {
+    if (l == 'أ') {
+      return const [
+        LetterPositionExample(
+          positionLabel: 'أول الكلمة',
+          letterForm: 'أَ',
+          highlighted: 'أَ',
+          afterText: 'رنب',
+          imageAsset: 'assets/images/rabbit.png',
+          word: 'أَرْنَب',
+        ),
+        LetterPositionExample(
+          positionLabel: 'وسط الكلمة',
+          letterForm: 'ـأْـ',
+          beforeText: 'فَ',
+          highlighted: 'أْ',
+          afterText: 'رة',
+          imageAsset: 'assets/images/apple.png',
+          word: 'فَأْرَة',
+        ),
+        LetterPositionExample(
+          positionLabel: 'آخر الكلمة',
+          letterForm: 'ـأ',
+          beforeText: 'مَلْجَ',
+          highlighted: 'أ',
+          imageAsset: 'assets/images/house.png',
+          word: 'مَلْجَأ',
+        ),
+      ];
+    } else if (l == 'ت') {
+      return const [
+        LetterPositionExample(
+          positionLabel: 'أول الكلمة',
+          letterForm: 'تـ',
+          highlighted: 'تُ',
+          afterText: 'فاحة',
+          imageAsset: 'assets/images/apple.png',
+          word: 'تُفَّاحَة',
+        ),
+        LetterPositionExample(
+          positionLabel: 'وسط الكلمة',
+          letterForm: 'ـتـ',
+          beforeText: 'كِ',
+          highlighted: 'تَ',
+          afterText: 'اب',
+          imageAsset: 'assets/images/duck.png',
+          word: 'كِتَاب',
+        ),
+        LetterPositionExample(
+          positionLabel: 'آخر الكلمة',
+          letterForm: 'ـت',
+          beforeText: 'بَيْ',
+          highlighted: 'ت',
+          imageAsset: 'assets/images/house.png',
+          word: 'بَيْت',
+        ),
+      ];
+    } else if (l == 'ب') {
+      return const [
+        LetterPositionExample(
+          positionLabel: 'أول الكلمة',
+          letterForm: 'بـ',
+          highlighted: 'بَ',
+          afterText: 'قرة',
+          imageAsset: 'assets/images/cow.png',
+          word: 'بَقَرَة',
+        ),
+        LetterPositionExample(
+          positionLabel: 'وسط الكلمة',
+          letterForm: 'ـبـ',
+          beforeText: 'حَ',
+          highlighted: 'بْ',
+          afterText: 'ل',
+          imageAsset: 'assets/images/rope.png',
+          word: 'حَبْل',
+        ),
+        LetterPositionExample(
+          positionLabel: 'آخر الكلمة',
+          letterForm: 'ـب',
+          beforeText: 'مرك',
+          highlighted: 'ب',
+          imageAsset: 'assets/images/boat.png',
+          word: 'مَرْكَب',
+        ),
+      ];
+    } else {
+      return [
+        LetterPositionExample(
+          positionLabel: 'أول الكلمة',
+          letterForm: '$lـ',
+          highlighted: l,
+          afterText: '...',
+          imageAsset: 'assets/images/duck.png',
+          word: l,
+        ),
+        LetterPositionExample(
+          positionLabel: 'وسط الكلمة',
+          letterForm: 'ـ$lـ',
+          beforeText: '..',
+          highlighted: l,
+          afterText: '..',
+          imageAsset: 'assets/images/duck.png',
+          word: l,
+        ),
+        LetterPositionExample(
+          positionLabel: 'آخر الكلمة',
+          letterForm: 'ـ$l',
+          beforeText: '...',
+          highlighted: l,
+          imageAsset: 'assets/images/duck.png',
+          word: l,
+        ),
+      ];
+    }
   }
 
   @override

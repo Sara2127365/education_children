@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:flutter/material.dart';
 
 class LessonColors {
@@ -48,7 +49,7 @@ class LessonScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: AppLocale.textDirection,
       child: Scaffold(
         backgroundColor: LessonColors.background,
         body: SafeArea(
@@ -196,7 +197,7 @@ class MascotPanel extends StatelessWidget {
                 ),
                 if (onContinue != null) ...[
                   const SizedBox(height: 12),
-                  PrimaryButton(text: 'متابعة', onTap: onContinue!),
+                  PrimaryButton(text: 'continue_btn'.tr(), onTap: onContinue!),
                 ],
               ],
             ),

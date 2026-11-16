@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/feature/auth/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -22,31 +23,31 @@ class ParentsSection extends StatelessWidget {
       children: [
         const DashedDivider(),
         const SizedBox(height: 16),
-        const SectionTitle(
-          title: 'قسم الوالدين',
+        SectionTitle(
+          title: 'parents_section'.tr(),
           icon: Icons.supervisor_account,
           color: Colors.black87,
         ),
         const SizedBox(height: 10),
         CustomTextField(
           controller: emailController,
-          hint: 'البريد الإلكتروني',
+          hint: 'email'.tr(),
           icon: Icons.email_outlined,
           keyboardType: TextInputType.emailAddress,
           validator: (v) {
-            if (v == null || v.trim().isEmpty) return 'اكتب البريد الإلكتروني';
-            if (!v.contains('@')) return 'البريد غير صحيح';
+            if (v == null || v.trim().isEmpty) return 'enter_email'.tr();
+            if (!v.contains('@')) return 'invalid_email'.tr();
             return null;
           },
         ),
         const SizedBox(height: 12),
         CustomTextField(
           controller: phoneController,
-          hint: 'رقم الهاتف',
+          hint: 'phone'.tr(),
           icon: Icons.phone_outlined,
           keyboardType: TextInputType.phone,
           validator: (v) =>
-              (v == null || v.trim().length < 10) ? 'رقم الهاتف غير صحيح' : null,
+              (v == null || v.trim().length < 10) ? 'invalid_phone'.tr() : null,
         ),
       ],
     );

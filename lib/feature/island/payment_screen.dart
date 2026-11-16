@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/core/style/app_assets.dart';
 import 'package:education_children/feature/island/model/plan_model.dart';
 import 'package:education_children/feature/island/success_screen.dart';
@@ -32,7 +33,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: AppLocale.textDirection,
       child: Scaffold(
         body: Stack(
           fit: StackFit.expand,
@@ -41,7 +42,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             SafeArea(
               child: Column(
                 children: [
-                  const SubscriptionTopBar(title: 'الاشتراكات'),
+                  SubscriptionTopBar(title: 'subscriptions'.tr()),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
                     child: Column(

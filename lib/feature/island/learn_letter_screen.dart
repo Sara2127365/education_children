@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/feature/island/model/letter_model.dart';
 import 'package:education_children/feature/island/remember_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,8 @@ class _LearnLetterScreenState extends State<LearnLetterScreen> {
   }
 
   Future<void> _speakWord() async {
-    final word = '${widget.letter.wordStart ?? ''}${widget.letter.wordEnd ?? ''}';
+    final word =
+        '${widget.letter.wordStart ?? ''}${widget.letter.wordEnd ?? ''}';
     if (word.isEmpty) return;
     await _tts.stop();
     await _tts.speak(word);
@@ -40,8 +42,8 @@ class _LearnLetterScreenState extends State<LearnLetterScreen> {
     final letter = widget.letter;
 
     return LessonScaffold(
-      title: 'تعلم الحرف',
-      buttonText: 'متابعة',
+      title: 'learn_letter'.tr(),
+      buttonText: 'continue_btn'.tr(),
       onButtonPressed: () => Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => RememberScreen(letter: letter)),
@@ -52,17 +54,13 @@ class _LearnLetterScreenState extends State<LearnLetterScreen> {
           alignment: Alignment.topCenter,
           children: [
             // ... نفس الـ Positioned بتاع الكارت السفلي من غير أي تغيير ...
-
             Positioned(
               top: 100,
               left: 16,
-              child: SpeakerButton(
-                size: 54,
-                onTap: _speakWord,
-              ),
+              child: SpeakerButton(size: 54, onTap: _speakWord),
             ),
 
-           LetterCard(letter: letter.letter),
+            LetterCard(letter: letter.letter),
           ],
         ),
       ),

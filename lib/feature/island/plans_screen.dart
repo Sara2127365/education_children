@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/core/style/app_assets.dart';
 import 'package:education_children/feature/island/model/plan_model.dart';
 import 'package:education_children/feature/island/payment_screen.dart';
@@ -18,7 +19,7 @@ class _PlansScreenState extends State<PlansScreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: AppLocale.textDirection,
       child: Scaffold(
         body: Stack(
           fit: StackFit.expand,
@@ -27,7 +28,7 @@ class _PlansScreenState extends State<PlansScreen> {
             SafeArea(
               child: Column(
                 children: [
-                  const SubscriptionTopBar(title: 'الاشتراكات'),
+                  SubscriptionTopBar(title: 'subscriptions'.tr()),
                   Expanded(
                     child: ListView(
                       padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),

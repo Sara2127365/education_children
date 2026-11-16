@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/core/style/app_assets.dart';
 import 'package:education_children/core/style/color_manager.dart';
 import 'package:education_children/feature/auth/signup/sign_up_option.dart';
@@ -22,17 +23,17 @@ class GuideSelector extends StatelessWidget {
       children: [
         const _GuideHeader(),
         const SizedBox(height: 6),
-        const Text(
-          'اختر من سيوجه رحلتك التعليمية',
-          style: TextStyle(fontSize: 11, color: Colors.grey),
+        Text(
+          'choose_guide'.tr(),
+          style: const TextStyle(fontSize: 11, color: Colors.grey),
         ),
         const SizedBox(height: 12),
         Row(
           children: [
             Expanded(
               child: OptionCard(
-                label: 'معلمة',
-                subLabel: 'انثى',
+                label: 'female_teacher'.tr(),
+                subLabel: 'female'.tr(),
                 labelColor: ColorManager.guidePink,
                 imagePath: AppAssets.teacherFemale,
                 imageSize: 60,
@@ -43,8 +44,8 @@ class GuideSelector extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: OptionCard(
-                label: 'معلم',
-                subLabel: 'ذكر',
+                label: 'male_teacher'.tr(),
+                subLabel: 'male'.tr(),
                 labelColor: ColorManager.guideBlue,
                 imagePath: AppAssets.teacherMale,
                 imageSize: 60,
@@ -64,24 +65,24 @@ class _GuideHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 13,
           backgroundColor: ColorManager.skyBlue,
           child: Icon(Icons.person, size: 16, color: Colors.white),
         ),
-        SizedBox(width: 6),
+        const SizedBox(width: 6),
         Text(
-          'بيانات الموجة',
-          style: TextStyle(
+          'guide_info'.tr(),
+          style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.bold,
             color: ColorManager.text,
           ),
         ),
-        SizedBox(width: 8),
-        Expanded(child: DashedDivider()),
+        const SizedBox(width: 8),
+        const Expanded(child: DashedDivider()),
       ],
     );
   }

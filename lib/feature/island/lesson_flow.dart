@@ -12,8 +12,11 @@ void startPracticeFlow(BuildContext context, LetterPositionModel letter) {
 
   go(
     LetterPositionsScreen(
+      letter: letter,
       onFinished: () => go(
         WriteLetterScreen(
+          letterName: letter.letter,
+          letterChar: letter.letter,
           onContinue: () => go(
             MatchingScreen(
               onContinue: () => go(SpeakingPracticeScreen(letter: letter)),

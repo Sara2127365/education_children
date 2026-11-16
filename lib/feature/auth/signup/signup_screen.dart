@@ -1,3 +1,5 @@
+import 'package:education_children/core/localization/app_locale.dart';
+import 'package:education_children/core/state/user_profile_state.dart';
 import 'package:education_children/feature/auth/signup/sign_up_option.dart';
 import 'package:education_children/feature/auth/signup/widget/dialect_selector.dart';
 import 'package:education_children/feature/auth/signup/widget/gender_selector.dart';
@@ -10,7 +12,6 @@ import 'package:education_children/feature/home/man_teacher.dart';
 import 'package:education_children/feature/home/woman_teacher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -28,8 +29,14 @@ class _SignupViewState extends State<SignupScreen> {
 
   Gender? _gender;
   GuideType? _guide;
-  String _language = 'ar';
+  late String _language;
   Dialect _dialect = Dialect.gulf;
+
+  @override
+  void initState() {
+    super.initState();
+    _language = AppLocale.languageCode;
+  }
 
   @override
   void dispose() {
@@ -41,62 +48,80 @@ class _SignupViewState extends State<SignupScreen> {
   }
 
   void _onSubmit() {
-  if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) return;
 
-  if (_gender == null || _guide == null) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('من فضلك اختر النوع والموجه'),
-      ),
+    if (_gender == null || _guide == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('select_gender_and_guide'.tr()),
+        ),
+      );
+      return;
+    }
+
+    // حفظ بيانات الطفل واللغة المختارة في UserProfile وتطبيقها فوراً في Core
+    UserProfile.update(
+      newName: _nameController.text.trim(),
+      newGender: _gender,
+      newGuide: _guide,
+      newAge: int.tryParse(_ageController.text.trim()),
+      newDialect: _dialect,
+      newLanguage: _language,
     );
-    return;
-  }
+    AppLocale.changeLanguage(_language);
 
-  switch (_guide!) {
-    case GuideType.female:
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const WomanTeacher(),
-        ),
-      );
-      break;
+    switch (_guide!) {
+      case GuideType.female:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WomanTeacher(
+              childName: UserProfile.name.value,
+              gender: UserProfile.gender.value,
+            ),
+          ),
+        );
+        break;
 
-    case GuideType.male:
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ManTeacher(),
-        ),
-      );
-      break;
+      case GuideType.male:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ManTeacher(
+              childName: UserProfile.name.value,
+              gender: UserProfile.gender.value,
+            ),
+          ),
+        );
+        break;
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
       formKey: _formKey,
       topSpaceFactor: 0.1,
-      buttonText: 'هيا بنا ، نبدأ',
+      buttonText: 'let_us_start'.tr(),
       onButtonPressed: _onSubmit,
       cardChildren: [
         LabeledTextField(
-          label: 'اسم الطفل',
-          hint: 'اكتب اسم الطفل',
+          label: 'child_name'.tr(),
+          hint: 'enter_child_name'.tr(),
           icon: Icons.person_outline,
           controller: _nameController,
           validator: (v) =>
-              (v == null || v.trim().isEmpty) ? 'اكتب اسم الطفل' : null,
+              (v == null || v.trim().isEmpty) ? 'enter_child_name'.tr() : null,
         ),
         LabeledTextField(
-          label: 'العمر',
-          hint: 'كم عمرك؟',
+          label: 'age'.tr(),
+          hint: 'how_old'.tr(),
           icon: Icons.cake_outlined,
           controller: _ageController,
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          validator: (v) => (v == null || v.trim().isEmpty) ? 'اكتب العمر' : null,
+          validator: (v) =>
+              (v == null || v.trim().isEmpty) ? 'enter_age'.tr() : null,
         ),
         GenderSelector(
           selected: _gender,
@@ -108,7 +133,10 @@ class _SignupViewState extends State<SignupScreen> {
         ),
         LanguageSelector(
           selectedCode: _language,
-          onChanged: (code) => setState(() => _language = code),
+          onChanged: (code) {
+            setState(() => _language = code);
+            AppLocale.changeLanguage(code);
+          },
         ),
         DialectSelector(
           selected: _dialect,

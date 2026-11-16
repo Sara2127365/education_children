@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/feature/auth/signup/sign_up_option.dart';
 import 'package:education_children/feature/auth/widgets/section_title.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class LanguageSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(title: 'اختر لغتك'),
+        SectionTitle(title: 'choose_language'.tr()),
         const SizedBox(height: 12),
         Wrap(
           spacing: 12,

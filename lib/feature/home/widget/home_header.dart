@@ -1,10 +1,15 @@
+import 'package:education_children/core/localization/app_locale.dart';
+import 'package:education_children/core/state/user_profile_state.dart';
 import 'package:education_children/core/style/app_assets.dart';
+import 'package:education_children/feature/auth/signup/sign_up_option.dart';
 import 'package:flutter/material.dart';
 
 class HomeHeader extends StatelessWidget {
   final String name;
   final int coins;
   final int stars;
+  final Gender? gender;
+  final String? avatarAsset;
   final VoidCallback? onAddCoins;
   final VoidCallback? onAddStars;
 
@@ -13,6 +18,8 @@ class HomeHeader extends StatelessWidget {
     required this.name,
     required this.coins,
     required this.stars,
+    this.gender,
+    this.avatarAsset,
     this.onAddCoins,
     this.onAddStars,
   });
@@ -21,7 +28,10 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // The Row is LTR on purpose: avatar (left) - greeting - chips (right)
+    final isGirl = (gender == Gender.girl) || UserProfile.isGirl;
+    final avatar = avatarAsset ??
+        (isGirl ? AppAssets.userGirl : AppAssets.user);
+
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Padding(
@@ -42,8 +52,8 @@ class HomeHeader extends StatelessWidget {
                     offset: const Offset(0, 3),
                   ),
                 ],
-                image: const DecorationImage(
-                  image: AssetImage(AppAssets.user),
+                image: DecorationImage(
+                  image: AssetImage(avatar),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -51,12 +61,14 @@ class HomeHeader extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: AppLocale.isRtl
+                    ? CrossAxisAlignment.end
+                    : CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'صباح الخير يا $name !',
-                    textDirection: TextDirection.rtl,
+                    'good_morning'.tr(params: {'name': name}),
+                    textDirection: AppLocale.textDirection,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -66,10 +78,10 @@ class HomeHeader extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 2),
-                  const Text(
-                    'هيا نكمل رحلتنا التعليمية',
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(fontSize: 13, color: _navy),
+                  Text(
+                    'continue_journey'.tr(),
+                    textDirection: AppLocale.textDirection,
+                    style: const TextStyle(fontSize: 13, color: _navy),
                   ),
                 ],
               ),

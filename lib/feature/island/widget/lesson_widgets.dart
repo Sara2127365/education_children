@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:flutter/material.dart';
 
 class LessonColors {
@@ -15,6 +16,7 @@ class LessonScaffold extends StatelessWidget {
   final String? buttonText;
   final VoidCallback? onButtonPressed;
   final bool showBack;
+  final Widget? bottom;
 
   const LessonScaffold({
     super.key,
@@ -23,12 +25,13 @@ class LessonScaffold extends StatelessWidget {
     this.buttonText,
     this.onButtonPressed,
     this.showBack = true,
+    this.bottom,
   });
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: AppLocale.textDirection,
       child: Scaffold(
         backgroundColor: LessonColors.bg,
         body: SafeArea(
@@ -66,7 +69,9 @@ class LessonScaffold extends StatelessWidget {
                 ),
               ),
               Expanded(child: child),
-              if (buttonText != null)
+              if (bottom != null)
+                bottom!
+              else if (buttonText != null)
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
                   child: LessonButton(

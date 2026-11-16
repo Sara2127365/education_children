@@ -41,7 +41,13 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: shadowColor == null
               ? null
-              : [BoxShadow(color: shadowColor!, offset: const Offset(0, 5))],
+              : [
+                  BoxShadow(
+                    color: shadowColor!,
+                    offset: const Offset(0, 7),
+                    blurRadius: 0,
+                  ),
+                ],
         ),
         child: OutlinedButton.icon(
           onPressed: onPressed,

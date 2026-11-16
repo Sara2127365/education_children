@@ -1,3 +1,4 @@
+import 'package:education_children/core/localization/app_locale.dart';
 import 'package:education_children/core/state/subscription_state.dart';
 import 'package:education_children/core/style/app_assets.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class SuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: AppLocale.textDirection,
       child: Scaffold(
         body: Stack(
           fit: StackFit.expand,
